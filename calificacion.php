@@ -19,7 +19,7 @@ class Calificacion{
 			$calificacion=$res[0];
 			return $this->$calificacion;
 		}else{
-			$calificacion=0;
+			$calificacion=-1;
 			return $this->$calificacion;
 		}
 	}
