@@ -12,6 +12,9 @@ session_start();
 </head>
 
 <body>
+    <?php
+    include("DBconnection/connection.php");
+    ?>
   <div id="main">
     <div id="header">
       <div id="logo">
@@ -62,7 +65,7 @@ session_start();
       </div>
       <div id="content">
            <?php
-        $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
+        
         $result = pg_query($dbconn,"SELECT titulo FROM pelicula ORDER BY titulo ASC");
         $col = pg_fetch_all_columns($result);
    

@@ -77,7 +77,7 @@
         }
         
         function mostrarTitulo(){
-           print( '<a href="http://localhost/detallepelicula.php?titulo=$this->titulo">$this->titulo</a></br>' ); 
+           print( '<a href="http://localhost/detallepelicula.php?titulo=$this->titulo">' . $this->titulo . '</a></br>' ); 
         }
     }
 

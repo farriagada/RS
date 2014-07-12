@@ -19,9 +19,10 @@
         }
         
         function buscarPeliculas($titulo){
-            $catquery2=pg_query($dbconn, "SELECT * FROM pelicula WHERE titulo LIKE %$nombre% ");
+            $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
+            $catquery2=pg_query($dbconn, "SELECT * FROM pelicula WHERE titulo LIKE '%$titulo%' ");
             
-            $calu = pg_fetch_all_columns($catquery2);
+            $calu = pg_fetch_all($catquery2);
             $n = pg_num_rows($catquery2);
             
             $lista = array();

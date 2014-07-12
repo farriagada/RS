@@ -4,7 +4,7 @@
 session_start();
 ?>
 <head>
-  <title>RecoMovies - Home</title>
+  <title>RecoMovies - Catalogo</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
@@ -12,8 +12,8 @@ session_start();
 </head>
 
 <body>
-	<?php
-    include("DBconnection/connection.php");
+    <?php
+        include("DBconnection/connection.php");
     ?>
   <div id="main">
     <div id="header">
@@ -28,24 +28,24 @@ session_start();
     //echo "<br>";
     print( '<h2><a href="edituser.php">Editar</a>' );
     echo "- ";
- 	print( '<a href="logout.php">Salir</a></br>' );
+    print( '<a href="logout.php">Salir</a></br>' );
     ?></h2>
         </div>
       </div>
       <div id="menubar">
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li class="selected"><a href="home.php">Home</a></li>
-          <li><a href="listamovies.php">Cat&aacute;logo</a></li>
+          <li><a href="home.php">Home</a></li>
+          <li class="selected"><a href="listamovies.php">Cat&aacute;logo</a></li>
           <li><a href="page.html">A Page</a></li>
         </ul>
       </div>
     </div>
     <div id="content_header"></div>
-    <div id="site_content">
+    <div id="site_content"> 
       <div class="sidebar">
-      	<h3>Search</h3>
-        <form method="post" action="search.php" id="search_form">
+        <h3>Search</h3>
+        <form method="post" action="#" id="search_form">
           <p>
             <input class="search" type="text" name="search_field" value="Enter keywords....." />
             <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
@@ -64,12 +64,21 @@ session_start();
         
       </div>
       <div id="content">
+       <?php
+        include("catalogo.php");
+        $bus = $_POST["search_field"];
+        $lista = array();
+        $cat = new catalogo();
         
+        $lista = $cat->buscarPeliculas($bus);
+        $cat->mostrarLista($lista);
+        
+      ?> 
       </div>
     </div>
     <div id="content_footer"></div>
     <div id="footer">
-    	RecoMovies es una Web dise&ntilde;ada para Ingenieria de Software, Universidad de Concepcion
+        RecoMovies es una Web dise&ntilde;ada para Ingenieria de Software, Universidad de Concepcion
     </div>
   </div>
 </body>
