@@ -8,6 +8,14 @@
         private $ano;
         private $promedio;
         
+        function setId ($id){
+            $this->id=$id;
+        }
+        
+        function getId(){
+            return $this->id;
+        }
+        
         function setTitulo ($tit){
             $this->titulo = $tit;
         }
@@ -44,6 +52,10 @@
             return $this->promedio;
         }
         
+        function setPromedio($p){
+            $this->promedio=$p;
+        }
+        
         /*Función para calcular el promedio de una película
          * En base a los valores en la tabla califica
          */
@@ -59,6 +71,10 @@
            }
            $prom = $sum/$numofnotes;
            $this->promedio=$prom;
+        }
+        
+        function mostrarTitulo(){
+            
         }
     }
 
