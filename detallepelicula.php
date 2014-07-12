@@ -45,9 +45,9 @@ session_start();
     <div id="site_content">
       <div class="sidebar">
         <h3>Search</h3>
-        <form method="post" action="#" id="search_form">
+        <form method="post" action="search.php" id="search_form">
           <p>
-            <input class="search" type="text" name="search_field" value="Enter keywords....." />
+            <input class="search" type="text" name="search_field" value="" />
             <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
           </p>
         </form>

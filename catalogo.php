@@ -22,7 +22,7 @@
             $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
             $catquery2=pg_query($dbconn, "SELECT * FROM pelicula WHERE titulo LIKE '%$titulo%' ");
             
-            $calu = pg_fetch_assoc($catquery2);
+          
             $n = pg_num_rows($catquery2);
         
             
