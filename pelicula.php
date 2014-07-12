@@ -3,7 +3,7 @@
             
         private $id;
         private $titulo;
-        private $descr;
+        private $descr;//ccccas
         private $sitio;
         private $ano;
         private $promedio;
