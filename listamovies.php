@@ -33,7 +33,7 @@ session_start();
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
           <li><a href="home.php">Home</a></li>
-          <li class="selected"><a href="catalogo.php">Cat&aacute;logo</a></li>
+          <li class="selected"><a href="listamovies.php">Cat&aacute;logo</a></li>
           <li><a href="page.html">A Page</a></li>
         </ul>
       </div>
