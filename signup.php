@@ -10,6 +10,9 @@
 </head>
 
 <body>
+    <?php
+    include("DBconnection/connection.php");
+    ?>
   <div id="main">
     <div id="header">
       <div id="logo">
@@ -32,7 +35,7 @@
         $name = $_POST["nombre"];
         $lastname = $_POST["apellido"];
         
-        $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
+       /* $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20"); */
         $result = pg_query($dbconn,"SELECT count(*) as total from usuario");
         $numofusers = pg_fetch_assoc($result);
         $id = $numofusers['total'] + 1;

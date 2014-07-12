@@ -48,7 +48,7 @@
          * En base a los valores en la tabla califica
          */
         function calcPromedio(){
-           $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
+         /*  $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20"); */
            $query = pg_query($dbconn,"SELECT nota FROM califica WHERE idp=$id");
            $result = pg_query($dbconn, "SELECT count(*) FROM califica WHERE idp=$id");
            $numofnotes = pg_fetch_assoc($result);

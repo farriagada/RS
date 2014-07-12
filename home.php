@@ -12,6 +12,9 @@ session_start();
 </head>
 
 <body>
+	<?php
+    include("DBconnection/connection.php");
+    ?>
   <div id="main">
     <div id="header">
       <div id="logo">
