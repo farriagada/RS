@@ -22,26 +22,30 @@
             $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
             $catquery2=pg_query($dbconn, "SELECT * FROM pelicula WHERE titulo LIKE '%$titulo%' ");
             
-            $calu = pg_fetch_all($catquery2);
+            $calu = pg_fetch_assoc($catquery2);
             $n = pg_num_rows($catquery2);
+        
             
             $lista = array();
-            for ($i=0;$i<$n;$i++){
-                 $res2=pg_fetch_row($calu[$i]);
-                 $peli2 = new pelicula();
-                 $peli2->setTitulo($res2[1]);
-                 $peli2->setId($res2[0]);
-                 $peli2->setDescr($res2[2]);
-                 $peli2->setSitio($res2[3]);
-                 $peli2->setAno($res2[4]);
-                 $peli2->setPromedio($res2[5]);  
+            
+            while ($res2 = pg_fetch_assoc($catquery2)){
+                     $peli2 = new pelicula();
+                 $peli2->setTitulo($res2['titulo']);
+                 $peli2->setId($res2['id']);
+                 $peli2->setDescr($res2['descr']);
+                 $peli2->setSitio($res2['sitio']);
+                 $peli2->setAno($res2['ano']);
+                 $peli2->setPromedio($res2['promedio']);  
                  
-                 array_push($lista, $peli2);      
+                 array_push($lista, $peli2);            
+                                    
+                    }
+            return $lista;
+                
+ 
             }
            
             
-            return $lista; 
-        }
         
         function mostrarLista($pelicula){
             foreach($pelicula as $p){
