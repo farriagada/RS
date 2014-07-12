@@ -30,25 +30,41 @@
     <div id="site_content">
    <div id="content">
     <?php
+    	$admin = "admin@gmail.com";
+		$adminpw = "admin";
         $mail = $_POST["usermail"];
         $pass = $_POST["password"]; 
-        /*$dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20"); */
-        $query = pg_query($dbconn, "SELECT * FROM usuario AS u WHERE u.email = '$mail' AND u.pass='$pass'");
-        $num = pg_num_rows($query);
-        if($num > 0) {
-            
-            session_start();
-            $row = pg_fetch_row($query);
-            $_SESSION['Nombre']=$row[3];
-            $_SESSION['Apellido']=$row[4];
-            $_SESSION['Email']=$row[1];
+		if($mail == $admin && $pass == $adminpw){
+			$query = pg_query($dbconn, "SELECT * FROM administrador AS a WHERE a.email = '$mail' AND a.pass = '$pass'");
+			$num = pg_num_rows($query);
+			if($num > 0){
+				
+				session_start();
+            	$row = pg_fetch_row($query);
+            	$_SESSION['Nombre']=$row[3];
+            	$_SESSION['Apellido']=$row[4];
+            	$_SESSION['Email']=$row[1];
          
-            header('Location: http://localhost/RS/home.php');
-        }
-        else echo "<script>
-                 alert('Error de Login, intenta de nuevo');
-                 window.location.href='index.html';
-                 </script>";        
+        	    header('Location: http://localhost/RS/homeadmin.php');
+			}		
+		} else {
+        	$query = pg_query($dbconn, "SELECT * FROM usuario AS u WHERE u.email = '$mail' AND u.pass='$pass'");
+       		$num = pg_num_rows($query);
+        	if($num > 0) {
+            
+            	session_start();
+            	$row = pg_fetch_row($query);
+            	$_SESSION['Nombre']=$row[3];
+            	$_SESSION['Apellido']=$row[4];
+            	$_SESSION['Email']=$row[1];
+         
+            	header('Location: http://localhost/RS/home.php');
+        	} else { echo "<script>
+                 	alert('Error de Login, intenta de nuevo');
+                 	window.location.href='index.html';
+                 	</script>"; 
+     		  }			 	    
+        }       
     ?>
       </div>
     </div>
