@@ -4,7 +4,7 @@
 session_start();
 ?>
 <head>
-  <title>RecoMovies - Catalogo</title>
+  <title>RecoMovies - Pelicula</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
@@ -12,6 +12,9 @@ session_start();
 </head>
 
 <body>
+    <?php
+    include("DBconnection/connection.php");
+    ?>
   <div id="main">
     <div id="header">
       <div id="logo">
@@ -33,13 +36,13 @@ session_start();
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
           <li><a href="home.php">Home</a></li>
-          <li class="selected"><a href="listamovies.php">Cat&aacute;logo</a></li>
+          <li><a href="listamovies.php">Cat&aacute;logo</a></li>
           <li><a href="page.html">A Page</a></li>
         </ul>
       </div>
     </div>
     <div id="content_header"></div>
-    <div id="site_content"> 
+    <div id="site_content">
       <div class="sidebar">
         <h3>Search</h3>
         <form method="post" action="#" id="search_form">
@@ -61,16 +64,18 @@ session_start();
         
       </div>
       <div id="content">
-           <?php
-        $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
-        $result = pg_query($dbconn,"SELECT titulo FROM pelicula ORDER BY titulo ASC");
-        $col = pg_fetch_all_columns($result);
-   
-        for ($i=0; $i<pg_num_rows($result);$i++){
-            echo "<a href='http://localhost/RS/detallepelicula.php?titulo=" . $col[$i] . "'>" . $col[$i] . "</a><br>";
-        } 
-        
-      ?> 
+            <?php
+    include("DBconnection/connection.php");
+    include("catalogo.php");    
+    $pels = $_GET["titulo"];
+    $c = new catalogo();
+    $p = $c->buscarPelicula($pels);
+    echo "<h1>" .$p->getTitulo() . "</h1><br><br>";
+    echo "<a href=" .$p->getSitio() . ">Enlace IMDB</a><br>";
+    echo "<a>" . $p->getDescr() . "</a><br>";
+    echo "<h3>Promedio de Calificacion:" . $p->getPromedio() . "</h3><br>";   
+    ?>
+
       </div>
     </div>
     <div id="content_footer"></div>

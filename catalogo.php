@@ -1,9 +1,11 @@
 <?php
     include("pelicula.php");
+  
     class catalogo{
         
         function buscarPelicula($nombre){
-            $catquery=pg_query($dbconn, "SELECT * FROM pelicula WHERE titulo=$nombre ");
+            $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
+            $catquery=pg_query($dbconn, "SELECT * FROM pelicula WHERE titulo='$nombre' ");
             $res=pg_fetch_row($catquery);
             $peli = new pelicula();
             $peli->setTitulo($res[1]);
