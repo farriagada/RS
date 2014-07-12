@@ -79,6 +79,14 @@
         function mostrarTitulo(){
            print( '<a href="http://localhost/RS/detallepelicula.php?titulo=' . $this->titulo . '">' . $this->titulo . '</a></br>' ); 
         }
+        
+        function mostrarDetalle(){
+           
+            echo "<h1>" . $this->titulo . "</h1><br>";
+            echo "<a href=" . $this->sitio . ">Enlace IMDB</a><br>";
+            echo "<h5>" .  $this->descr . "<h5><br>";
+            echo "<h6>Promedio de Calificacion: " . $this->promedio . "</h6><br>"; 
+        }
     }
 
 ?>

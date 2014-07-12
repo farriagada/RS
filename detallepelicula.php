@@ -70,10 +70,7 @@ session_start();
     $pels = $_GET["titulo"];
     $c = new catalogo();
     $p = $c->buscarPelicula($pels);
-    echo "<h1>" .$p->getTitulo() . "</h1><br><br>";
-    echo "<a href=" .$p->getSitio() . ">Enlace IMDB</a><br>";
-    echo "<a>" . $p->getDescr() . "</a><br>";
-    echo "<h3>Promedio de Calificacion:" . $p->getPromedio() . "</h3><br>";   
+    $p->mostrarDetalle();  
     ?>
 
       </div>
