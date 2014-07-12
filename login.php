@@ -10,6 +10,9 @@
 </head>
 
 <body>
+    <?php
+    include("DBconnection/connection.php");
+    ?>
   <div id="main">
     <div id="header">
       <div id="logo">
@@ -29,7 +32,7 @@
     <?php
         $mail = $_POST["usermail"];
         $pass = $_POST["password"]; 
-        $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
+        /*$dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20"); */
         $query = pg_query($dbconn, "SELECT * FROM usuario AS u WHERE u.email = '$mail' AND u.pass='$pass'");
         $num = pg_num_rows($query);
         if($num > 0) {

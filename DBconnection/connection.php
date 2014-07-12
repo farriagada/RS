@@ -1,8 +1,3 @@
-
 <?php 
-$user = 'postgres';
-$passwd = 'lokoko20';
-$db = 'Isw2';
-$port = 5432;
-$host = 'localhost';
+$dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
 ?>
