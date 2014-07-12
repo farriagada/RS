@@ -41,7 +41,9 @@
         }
         
         function mostrarLista($pelicula){
-            
+            foreach($pelicula as $p){
+                $p->mostrarTitulo();
+            }
         }
     }
 
