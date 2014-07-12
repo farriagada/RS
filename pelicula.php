@@ -63,18 +63,22 @@
          /*  $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20"); */
            $query = pg_query($dbconn,"SELECT nota FROM califica WHERE idp=$id");
            $result = pg_query($dbconn, "SELECT count(*) FROM califica WHERE idp=$id");
-           $numofnotes = pg_fetch_assoc($result);
-           $row = pg_fetch_row($query);
+           $numofnotes = pg_num_rows($result);
+           $row = pg_fetch_all_columns($query);
            $sum = 0;
            for ($i=0; $i<$numofnotes; $i++){
                $sum = $sum + $row[$i];
            }
-           $prom = $sum/$numofnotes;
-           $this->promedio=$prom;
+           if ($numofnotes!=0){
+              $prom = $sum/$numofnotes;
+              $this->promedio=$prom;
+           }
+           else $this->promedio=0;
+           
         }
         
         function mostrarTitulo(){
-            
+           print( '<a href="http://localhost/detallepelicula.php&titulo=$this->titulo">$this->titulo</a></br>' ); 
         }
     }
 
