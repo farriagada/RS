@@ -53,13 +53,19 @@ session_start();
         </form>
         <!-- insert your sidebar items here -->
         <h3>WishList</h3>
-        <h4>New Website Launched</h4>
-        <h5>January 1st, 2010</h5>
-        <p>2010 sees the redesign of our website. Take a look around and let us know what you think.<br /><a href="#">Read more</a></p>
-        <p></p>
-        <h4>New Website Launched</h4>
-        <h5>January 1st, 2010</h5>
-        <p>2010 sees the redesign of our website. Take a look around and let us know what you think.<br /><a href="#">Read more</a></p>
+            <?php
+        $usuario = $_SESSION['Id'];
+            $result = pg_query($dbconn, "SELECT p.titulo, p.promedio FROM pelicula as p, incluye as i, usuario as u WHERE
+                                        $usuario=u.id AND
+                                        u.id=i.id AND
+                                        i.idpeli = p.id");
+ 
+            while ($x = pg_fetch_assoc($result)) {
+                echo"<a href='detallepelicula.php?titulo=".$x['titulo']."'><h4>". $x['titulo']."</h4></a><br>" ;
+                echo"<h5>Calificacion: " .$x['promedio']. "</h5><br>";
+            }
+          
+        ?>
     
         
       </div>

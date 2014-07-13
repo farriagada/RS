@@ -53,7 +53,7 @@ session_start();
         </form>
         <!-- insert your sidebar items here -->
         <h3>WishList</h3>
-        <?php
+          <?php
         $usuario = $_SESSION['Id'];
             $result = pg_query($dbconn, "SELECT p.titulo, p.promedio FROM pelicula as p, incluye as i, usuario as u WHERE
                                         $usuario=u.id AND
@@ -61,7 +61,7 @@ session_start();
                                         i.idpeli = p.id");
  
             while ($x = pg_fetch_assoc($result)) {
-                echo"<h4>". $x['titulo']."</h4><br>" ;
+                echo"<a href='detallepelicula.php?titulo=".$x['titulo']."'><h4>". $x['titulo']."</h4></a><br>" ;
                 echo"<h5>Calificacion: " .$x['promedio']. "</h5><br>";
             }
           

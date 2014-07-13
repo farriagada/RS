@@ -61,7 +61,7 @@ session_start();
                                         i.idpeli = p.id");
  
             while ($x = pg_fetch_assoc($result)) {
-                echo"<h4><a href='detallepelicula.php?titulo=".$x['titulo'].">'". $x['titulo']."</a></h4><br>" ;
+                echo"<a href='detallepelicula.php?titulo=".$x['titulo']."'><h4>". $x['titulo']."</h4></a><br>" ;
                 echo"<h5>Calificacion: " .$x['promedio']. "</h5><br>";
             }
           
