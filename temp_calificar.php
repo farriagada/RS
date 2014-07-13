@@ -32,9 +32,14 @@
 		echo "creo";
 		$calificacion->crear($u,$p,$_POST["nota"]);
 	}
+        $p->calcPromedio();
+        
+        $u->eliminarWL($p);
 	echo "salio";
 	echo '
+            <script type="text/javascript">  alert("OK");</script>
 	<script type="text/javascript">window.location.href="detallepelicula.php?titulo='.$_POST["titulo"].'"</script>
+          
 	hola pinwi
 	</body>
 	';
