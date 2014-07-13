@@ -72,7 +72,7 @@ session_start();
             <?php
             $id = $_SESSION['Id'];
         include("DBconnection/connection.php");
-        include("catalogo.php");    
+        include("todos.php");    
         $pels = $_GET["titulo"];
         $c = new catalogo();
         $p = $c->buscarPelicula($pels);

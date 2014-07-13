@@ -71,7 +71,7 @@ session_start();
       </div>
       <div id="content">
        <?php
-        include("catalogo.php");
+        include("todos.php");
         $bus = $_POST["search_field"];
         $lista = array();
         $cat = new catalogo();

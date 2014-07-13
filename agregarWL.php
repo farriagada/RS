@@ -66,7 +66,7 @@ session_start();
       <div id="content">
         <?php
 
-        include("usuario.php");
+        include("todos.php");
        // include("pelicula.php");
         $id = $_SESSION['Id'];
         $movie = $_GET['movie'];
