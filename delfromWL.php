@@ -75,7 +75,7 @@ session_start();
         <?php
 
         include("todos.php");
-       // include("pelicula.php");
+    
         $id = $_SESSION['Id'];
         $movie = $_GET['movie'];
         $user = new usuario();
@@ -84,12 +84,13 @@ session_start();
         $mov = new pelicula();
        
         $usr2 = $user->encontrarUsuario($id);
+        //ahora hay que quitar.
         $mov = $usr2->agregar($movie);
         $idpel = $mov->getId();
-        $usr2->agregarWL($idpel);
+        $usr2->eliminarWL($idpel);
         echo "<script>
-        alert('Pelicula agregada a la WishList');
-        window.location.href='detallepelicula.php?titulo=$movie';
+        alert('Pelicula eliminada a la WishList');
+        window.location.href='home.php';
        </script> ";  
         ?>
       </div>

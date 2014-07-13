@@ -62,7 +62,9 @@ session_start();
  
             while ($x = pg_fetch_assoc($result)) {
                 echo"<a href='detallepelicula.php?titulo=".$x['titulo']."'><h4>". $x['titulo']."</h4></a><br>" ;
-                echo"<h5>Calificacion: " .$x['promedio']. "</h5><br>";
+                echo"<h5>Calificacion: " .$x['promedio']. "</h5>";
+                echo "<a href='delfromWL.php?movie=".$x['titulo']."'>Eliminar de la WishList</a><br><br>";
+                echo "________________________";
             }
           
         ?>
