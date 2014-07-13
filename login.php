@@ -54,6 +54,7 @@
             
             	session_start();
             	$row = pg_fetch_row($query);
+                $_SESSION['Id']=$row[0];
             	$_SESSION['Nombre']=$row[3];
             	$_SESSION['Apellido']=$row[4];
             	$_SESSION['Email']=$row[1];
