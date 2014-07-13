@@ -3,11 +3,11 @@ class Calificacion{
 	private $calificacion;
 	
 	public function setCalificacion($calificacionvalue){
-		return $this->$calificacion=$calificacionvalue;
+		return $this->calificacion=$calificacionvalue;
 	}
 	
 	public function getCalificacion(){
-		return $this->$calificacion;
+		return $this->calificacion;
 	}
 	
 	public function buscarCalificacion($usuario, $pelicula){
