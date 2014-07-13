@@ -77,6 +77,26 @@ session_start();
         $c = new catalogo();
         $p = $c->buscarPelicula($pels);
         $p->mostrarDetalle();  
+        echo '
+				<form method="post" action="temp_calificar.php">
+				<input type=hidden name=titulo value="'.$p->getTitulo().'">
+				<input type=hidden name=usuario value="'.$_SESSION["Id"].'">
+				<select name="nota">
+					<option value="0">0</option>
+					<option value="0.5">0.5</option>
+					<option value="1.0">1.0</option>
+					<option value="1.5">1.5</option>
+					<option value="2.0">2.0</option>
+					<option value="2.5">2.5</option>
+					<option value="3.0">3.0</option>
+					<option value="3.5">3.5</option>
+					<option value="4.0">4.0</option>
+					<option value="4.5">4.5</option>
+					<option value="5.0">5.0</option>
+				  </select>
+				  <input type="submit" value="Calificar"></br>
+				  </form>
+				  ';	
         echo "<a href='agregarWL.php?movie=" . $pels . "'>Agregar a WishList</a><br>";
     ?>
 
