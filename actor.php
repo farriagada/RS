@@ -1,7 +1,8 @@
 <?php
 class Actor{
 	private $nombre;
-	
+	private $apellido;
+	private $ano_nac;
 	public function __set($nombre,$nombrevalue){
 		return $this->$nombre=$nombrevalue;
 	}
