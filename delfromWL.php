@@ -86,8 +86,8 @@ session_start();
         $usr2 = $user->encontrarUsuario($id);
         //ahora hay que quitar.
         $mov = $usr2->agregar($movie);
-        $idpel = $mov->getId();
-        $usr2->eliminarWL($idpel);
+      //  $idpel = $mov->getId();
+        $usr2->eliminarWL($mov);
         echo "<script>
         alert('Pelicula eliminada a la WishList');
         window.location.href='home.php';

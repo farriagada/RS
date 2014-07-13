@@ -85,8 +85,8 @@ session_start();
        
         $usr2 = $user->encontrarUsuario($id);
         $mov = $usr2->agregar($movie);
-        $idpel = $mov->getId();
-        $usr2->agregarWL($idpel);
+        //$idpel = $mov->getId();
+        $usr2->agregarWL($mov);
         echo "<script>
         alert('Pelicula agregada a la WishList');
         window.location.href='detallepelicula.php?titulo=$movie';

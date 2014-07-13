@@ -54,12 +54,14 @@ class Usuario{
         return $peli;
     }
     
-    function agregarWL($idPeli){
+    function agregarWL($peli){
+        $idPeli = $peli->getId();
         $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
         $query=pg_query($dbconn, "INSERT INTO incluye (id,idPeli) VALUES ('$this->id','$idPeli')");
     }
     
-    function eliminarWL($idPeli){
+    function eliminarWL($peli){
+        $idPeli = $peli->getId();
         $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
         $query=pg_query($dbconn, "DELETE FROM incluye as i WHERE $this->id=i.id AND $idPeli = i.idpeli");
     }
