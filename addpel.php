@@ -65,13 +65,29 @@ session_start();
 	$sitio = $_POST["sitio"];
 	$ano = $_POST["ano"];
 	$promedio = 0;
+	$genero = $_POST['Genero'];
+	$idioma = $_POST['Idioma'];
+	
       	
-    	$result = pg_query($dbconn, "SELECT id as num FROM pelicula order by id desc limit 1");
+  		$result = pg_query($dbconn, "SELECT id as num FROM pelicula order by id desc limit 1");
         $numofidmax = pg_fetch_assoc($result);
 		$id = $numofidmax['num'] + 1;
         $query = pg_query($dbconn, "INSERT INTO pelicula (id, titulo, descr, sitio, ano, promedio) VALUES ('$id', '$titulo','$descr','$sitio','$ano','$promedio')");	
   		
-  		if($query){
+		$n = count($genero);
+        //echo $genero[0];
+        for ($i = 0; $i <$n; $i++){
+            $query2 = pg_query($dbconn, "INSERT INTO tiene3 (id, nombre) VALUES ('$id','$genero[$i]') ");
+        }
+		
+		$m = count($idioma);
+        //echo $idioma[0];
+        for ($j = 0; $j <$m; $j++){
+            $query3 = pg_query($dbconn, "INSERT INTO tiene2 (id, nombre) VALUES ('$id','$idioma[$j]') ");
+        }
+		
+		
+  		if($query && $query2 && $query3){
 				
     		echo "<script>
     			 alert('Agregado Correctamente');

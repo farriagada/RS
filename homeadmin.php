@@ -74,8 +74,70 @@ session_start();
 			</p>
 			<p>
 			<label for="ano">A&ntilde;o: </label>
-			<input type="ano" name="ano" placeholder="Ej. 1995" required>
+			<input type="ano" name="ano" placeholder="Ej. 1995" required><br><br>
 			</p> 
+            
+            <label for="Genres">G&eacute;neros: </label>
+		<label>Action</label><input type="checkbox" name="Genero[]" value="Action" id="1">
+		<label for="Genres"> </label>
+		<label>Comedy</label><input type="checkbox" name="Genero[]" value="Comedy" id="2">
+		<label for="Genres"> </label>
+		<label>Horror</label><input type="checkbox" name="Genero[]" value="Horror" id="3"><br>
+		<label for="Genres"> </label>
+		<label>Thriller</label><input type="checkbox" name="Genero[]" value="Thriller" id="4"><br>
+		<label for="Genres"> </label>
+		<label>Animation</label><input type="checkbox" name="Genero[]" value="Animation" id="5"><br>
+		<label for="Genres"> </label>
+		<label>Drama</label><input type="checkbox" name="Genero[]" value="Drama" id="6"><br>
+		<label for="Genres"> </label>
+		<label>Romance</label><input type="checkbox" name="Genero[]" value="Romance" id="7"><br>
+		<label for="Genres"> </label>
+		<label>Mystery</label><input type="checkbox" name="Genero[]" value="Mystery" id="8"><br>
+		<label for="Genres"> </label>
+		<label>Sci-fi</label><input type="checkbox" name="Genero[]" value="Sci-fi" id="9"><br>
+		<label for="Genres"> </label>
+		<label>Crime</label><input type="checkbox" name="Genero[]" value="Crime" id="10"><br>
+		<label for="Genres"> </label>
+		<label>War</label><input type="checkbox" name="Genero[]" value="War" id="11"><br>
+		<label for="Genres"> </label>
+		<label>Children</label><input type="checkbox" name="Genero[]" value="Children" id="12"><br><br><br>
+		
+		<label for="Genres">Idiomas: </label>
+		<label>English</label><input type="checkbox" name="Idioma[]" value="English" id="25">
+		<label for="Genres"> </label>
+		<label>Spanish</label><input type="checkbox" name="Idioma[]" value="Spanish" id="26">
+		<label for="Genres"> </label>
+		<label>German</label><input type="checkbox" name="Idioma[]" value="German" id="27"><br>
+		<label for="Genres"> </label>
+		<label>Portuguese</label><input type="checkbox" name="Idioma[]" value="Portuguese" id="28"><br>
+		<label for="Genres"> </label>
+		<label>Dutch</label><input type="checkbox" name="Idioma[]" value="Dutch" id="29"><br>
+		<label for="Genres"> </label>
+		<label>French</label><input type="checkbox" name="Idioma[]" value="French" id="30"><br>
+		<label for="Genres"> </label>
+		<label>Chinese</label><input type="checkbox" name="Idioma[]" value="Chinese" id="31"><br>
+		<label for="Genres"> </label>
+		<label>Japanese</label><input type="checkbox" name="Idioma[]" value="Japanese" id="32"><br>
+		<label for="Genres"> </label>
+		<label>Bulgarian</label><input type="checkbox" name="Idioma[]" value="Bulgarian" id="33"><br>
+		<label for="Genres"> </label>
+		<label>Turkish</label><input type="checkbox" name="Idioma[]" value="Turkish" id="34"><br>
+		<label for="Genres"> </label>
+		<label>Finnish</label><input type="checkbox" name="Idioma[]" value="Finnish" id="35"><br>
+		<label for="Genres"> </label>
+		<label>Indian</label><input type="checkbox" name="Idioma[]" value="Indian" id="36"><br>
+		<label for="Genres"> </label>
+		<label>Russian</label><input type="checkbox" name="Idioma[]" value="Russian" id="37"><br><br><br>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             <label for='Agregar'> </label>       	
             <input type='submit' name='Agregar' value='Agregar'><br><br>  
      	        
