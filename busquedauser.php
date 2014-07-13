@@ -64,7 +64,7 @@ session_start();
        <?php
      	  
      	$busqueda = $_POST["search_field"];  
-        $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=ganga123");
+       // $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=ganga123");
         $result = pg_query($dbconn,"SELECT id,nombre,apellido,email FROM usuario WHERE nombre LIKE '%$busqueda%'");
        // $col = pg_fetch_all_columns($result);
 		while($col = pg_fetch_assoc($result)){

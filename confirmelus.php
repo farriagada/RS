@@ -63,15 +63,15 @@ session_start();
       	
       	
             <?php
-    include("DBconnection/connection.php");
-    include("catalogo.php"); 
+   // include("DBconnection/connection.php");
+    include("todos.php"); 
 	$id = $_GET["id"];
 	
 	echo "<script>
     			 alert('Eliminado Correctamente');
     		</script>";	
       	
-    $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=ganga123");
+   // $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=ganga123");
     $result = pg_query($dbconn,"DELETE FROM usuario WHERE id='$id'");
   		if($result){
   											

@@ -36,11 +36,11 @@
         $lastname = $_POST["apellido"];
         
        /* $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20"); */
-        $result = pg_query($dbconn,"SELECT count(*) as total from usuario");
+        $result = pg_query($dbconn,"SELECT id as num FROM usuario order by id desc limit 1");
         $numofusers = pg_fetch_assoc($result);
-        $id = $numofusers['total'] + 1;
+        $id = $numofusers['num'] + 1;
         $query = pg_query($dbconn, "INSERT INTO usuario (id, email, pass, nombre, apellido) VALUES ('$id', '$mail','$pass','$name','$lastname')");
-        
+        $query2 = pg_query($dbconn, "INSERT INTO wishlist (iduser,id) VALUES ('$id','$id')");
         //Se crean los arreglos de los checkboxes.
         $likegen = $_POST['Genero'];
         $dislikegen = $_POST['nGenero'];
