@@ -4,26 +4,37 @@ class Usuario{
 	private $nombre;
 	private $email;
 	
-	public function __set($id,$idvalue){
+	public function setId($idvalue){
 		return $this->$id=$idvalue;
 	}
 	
-	public function __set($nombre,$nombrevalue){
+	public function setNomber(,$nombrevalue){
 		return $this->$nombre=$nombrevalue;
 	}
-	public function __set($email,$emailvalue){
+	public function setEmail($emailvalue){
 		return $this->$email=$emailvalue;
 	}
 	
-	public function __get($id){
+	public function getId($id){
 		return $this->$id;
 	}
 	
-	public function __get($nombre){
+	public function getNombre($nombre){
 		return $this->$nombre;
 	}
-	public function __get($email){
+	public function getEmail($email){
 		return $this->$email;
+	}	
+	
+	public function encontrarUsuario($usuario){
+		$dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
+		$query=pg_query($dbconn, "SELECT * FROM usuario WHERE nombre='$usuario' ");
+		$res=pg_fetch_row($query);
+		$user = new usuario();
+		$user->$id=res[0];
+		$user->$nombre=res[1];
+		$user->$email=res[2];
+		return $user;
 	}	
 }
 ?>
