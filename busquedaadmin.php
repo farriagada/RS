@@ -37,7 +37,7 @@ session_start();
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
           <li class="selected"><a href="homeadmin.php">Modificar Cat&aacute;logo</a></li>
           <li><a href="recom.php">Actualizar Recomendaciones</a></li>
-          <li><a href="homeadminelus.php">Eliminar Usuario</a></li>
+          <li><a href="page.html">Eliminar Usuario</a></li>
         </ul>
       </div>
     </div>
@@ -48,7 +48,7 @@ session_start();
       	<h3>Buscar Pelicula</h3>
         <form method="post" action="busquedaadmin.php" id="search_form">
           <p>
-            <input class="search" type="text" name="search_field" value="Ingresar T&iacute;tulo"
+            <input class="search" type="text" name="search_field" value="Ingresar T&iacute;tulo" 
             onfocus="if(this.value=='Ingresar T&iacute;tulo')this.value='';"
             onblur="if(this.value=='')this.value='Ingresar T&iacute;tulo';" />
             <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
@@ -57,28 +57,18 @@ session_start();
       </div> 
       
      <div id="content">
-     	<h3>Agregar Pelicula</h3>
-		<div class="form_settings">
-		<form name="addpeli" action="addpel.php" method="post" accept-charset="utf-8" onsubmit="return minimum();">
-			<p>
-			<label for="titulo">T&iacute;tulo: </label>
-			<input type="text" name="titulo" placeholder="Ej. Titanic" required><br>
-			</p>
-			<p>
-			<label for="descr">Descripci&oacute;n: </label>
-			<input type="text" name="descripcion" placeholder="Ej. Titanic es una pelicula estadounidense..." required><br>
-			</p>
-			<p>
-			<label for="sitio">Sitio: </label>
-			<input type="sitio" name="sitio" placeholder="Ej. www.titanic.com" required><br>
-			</p>
-			<p>
-			<label for="ano">A&ntilde;o: </label>
-			<input type="ano" name="ano" placeholder="Ej. 1995" required>
-			</p> 
-            <label for='Agregar'> </label>       	
-            <input type='submit' name='Agregar' value='Agregar'><br><br>  
-     	        
+     	  <?php
+     	  
+     	$busqueda = $_POST["search_field"];  
+        $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=ganga123");
+        $result = pg_query($dbconn,"SELECT titulo FROM pelicula WHERE titulo LIKE '%$busqueda%'");
+        $col = pg_fetch_all_columns($result);
+   
+        for ($i=0; $i<pg_num_rows($result);$i++){
+            echo "<a href='http://localhost/RS/detallepeliculaadmin.php?titulo=" . $col[$i] . "'>" . $col[$i] . "</a><br>";
+        } 
+        
+      ?>     	        
       </div>
     </div>
     <div id="content_footer"></div>
