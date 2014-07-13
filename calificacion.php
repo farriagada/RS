@@ -1,36 +1,44 @@
 <?php
 class Calificacion{
+
 	private $calificacion;
 	
 	public function setCalificacion($calificacionvalue){
-		return $this->$calificacion=$calificacionvalue;
+		return $this->calificacion=$calificacionvalue;
 	}
 	
 	public function getCalificacion(){
-		return $this->$calificacion;
+		return $this->calificacion;
 	}
 	
-	public function buscarCalificacion($usuario, $pelicula){
-		$query=pg_query($dbconn,"SELECT nota FROM califica WHERE idu=$usuario->getId() and idp=$pelicula->getId()");
+	function buscarCalificacion($usuario, $pelicula){
+		$dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
+		$query=pg_query($dbconn,"SELECT nota FROM califica WHERE idu=".$usuario->getId() ."and idp=".$pelicula->getId()." ");
+		
 		if(pg_num_rows($query)>0){
 			$res=pg_fetch_row($query);
-			$calificacion=$res[0];
-			return $this->$calificacion;
+			$this->calificacion=$res[0];
+			echo "esto ".$this->calificacion;
+			return $this->calificacion;
 		}else{
-			$calificacion=-1;
-			return $this->$calificacion;
+			$this->calificacion=-1;
+			echo "lo otro ".$this->calificacion;
+			return $this->calificacion;
 		}
 	}
 	
 	public function actualizar($usuario,$pelicula,$calificacionV){
-		$this->$calificacion=$calificacionV;
-		pg_query($dbconn, "UPDATE califica SET nota=$calificacion 
-					   WHERE idu=$usuario->getId() and idp=$pelicula->getId()");
+	$dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
+		$this->calificacion=$calificacionV;
+		pg_query($dbconn, "UPDATE califica SET nota=".$this->calificacion." 
+					   WHERE idu=".$usuario->getId()." and idp=".$pelicula->getId()." ");
 	}
 	
 	public function crear($usuario,$pelicula,$calificacionV){
-		$this->$calificacion=$calificacionV;
-		$insert=pg_query($dbconn, "INSERT INTO califica(idu, idp, nota) VALUES ($usuario->getId(),$pelicula->getId(),$calificacion); ");
+		$dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
+		$this->calificacion=$calificacionV;
+		$insert=pg_query($dbconn, "INSERT INTO califica(idu, idp, nota) VALUES (".$usuario->getId().",".$pelicula->getId().",".$this->calificacion." ); ");
 	}
 }
 ?>
+
