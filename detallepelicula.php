@@ -71,7 +71,6 @@ session_start();
       <div id="content">
             <?php
             $id = $_SESSION['Id'];
-        include("DBconnection/connection.php");
         include("todos.php");    
         $pels = $_GET["titulo"];
         $c = new catalogo();

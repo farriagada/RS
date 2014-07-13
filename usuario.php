@@ -1,6 +1,4 @@
 <?php
-include("catalogo.php");
-
 class Usuario{
 	private $id;
 	private $nombre;

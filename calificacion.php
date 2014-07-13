@@ -1,6 +1,4 @@
 <?php
-include("pelicula.php");
-include("usuario.php");
 class Calificacion{
 	private $calificacion;
 	

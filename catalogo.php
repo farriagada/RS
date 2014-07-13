@@ -1,6 +1,4 @@
 <?php
-    include("pelicula.php");
-  
     class catalogo{
         
         function buscarPelicula($nombre){
