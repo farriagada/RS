@@ -2,7 +2,7 @@
     class catalogo{
         
         function buscarPelicula($nombre){
-        	$dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=ganga123");
+        	$dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
             $catquery=pg_query($dbconn, "SELECT * FROM pelicula WHERE titulo='$nombre' ");
             $res=pg_fetch_row($catquery);
             $peli = new Pelicula();
@@ -17,7 +17,7 @@
         }
         
         function buscarPeliculas($titulo){
-        	$dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=ganga123");
+        	$dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
             $catquery2=pg_query($dbconn, "SELECT * FROM pelicula WHERE titulo LIKE '%$titulo%' ");
             
           
