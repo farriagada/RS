@@ -2,12 +2,18 @@
 class Idioma{
 	private $nombre;
 	
-	public function __set($nombre,$nombrevalue){
-		return $this->$nombre=$nombrevalue;
+	function setNombre($nombrevalue){
+		return $this->nombre=$nombrevalue;
 	}
 
-	public function __get($nombre){
-		return $this->$nombre;
+	function getNombre(){
+		return $this->nombre;
 	}
+    
+    function retIdiomas($idpeli){
+        $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
+        $query = pg_query($dbconn, "SELECT nombre FROM tiene2 WHERE id=$idpeli");
+        return $query;
+    }
 }
 ?>

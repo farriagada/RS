@@ -92,6 +92,13 @@
                echo "<a href='listamov.php?genero=".$row['nombre']."'>". $row['nombre'] . "</a> "; 
                }
                echo "<br>";
+            $lang = new idioma();
+            $i = $lang->retIdiomas($this->id);
+            echo "Idiomas: ";
+              while ($row = pg_fetch_assoc($i)){
+               echo "<a href='listalang.php?lang=".$row['nombre']."'>". $row['nombre'] . "</a> "; 
+               }
+               echo "<br>";   
             echo "" .  $this->descr . "<br><br>";
             echo "Promedio de Calificacion: " . $this->promedio ."<br><br>";
             echo "<h6>Elenco </h6>";
