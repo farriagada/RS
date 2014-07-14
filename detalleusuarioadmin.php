@@ -64,7 +64,7 @@ session_start();
       	
             <?php
     include("DBconnection/connection.php");
-    include("catalogo.php"); 
+    include("todos.php"); 
     $nombre = $_GET["nombre"];
 	$id = $_GET["id"];
 	$apellido = $_GET["apellido"];

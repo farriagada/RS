@@ -59,7 +59,7 @@ session_start();
       <div id="content">
      <?php
     include("DBconnection/connection.php");
-    include("catalogo.php"); 
+    include("todos.php"); 
 	$titulo = $_POST["titulo"];
 	$descr = $_POST["descripcion"];
 	$sitio = $_POST["sitio"];

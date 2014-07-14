@@ -59,7 +59,8 @@ session_start();
       <div id="content">
             <?php
     include("DBconnection/connection.php");
-    include("catalogo.php"); 
+    include("todos.php");
+     
 	//include("busquedaadmin.php");   
     $pels = $_GET["titulo"];
 	
