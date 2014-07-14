@@ -37,7 +37,9 @@ class Calificacion{
 	public function crear($usuario,$pelicula,$calificacionV){
 		$dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
 		$this->calificacion=$calificacionV;
-		$insert=pg_query($dbconn, "INSERT INTO califica(idu, idp, nota) VALUES (".$usuario->getId().",".$pelicula->getId().",".$this->calificacion." ); ");
+		$idu = $usuario->getId();
+		$idp = $pelicula->getId();
+		$insert=pg_query($dbconn, "INSERT INTO califica(idu, idp, nota) VALUES ('$idu','$idp','$this->calificacion' ); ");
 	}
 }
 ?>

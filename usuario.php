@@ -16,14 +16,14 @@ class Usuario{
 		return $this->email=$emailvalue;
 	}
 	
-	function getId($id){
+	function getId(){
 		return $this->id;
 	}
 	
-	function getNombre($nombre){
+	function getNombre(){
 		return $this->nombre;
 	}
-	function getEmail($email){
+	function getEmail(){
 		return $this->email;
 	}	
     

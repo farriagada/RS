@@ -60,8 +60,8 @@
          * En base a los valores en la tabla califica
          */
         function calcPromedio(){
-         /*  $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20"); */
-           $query = pg_query($dbconn,"SELECT nota FROM califica WHERE idp=$id");
+           $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20"); 
+           $query = pg_query($dbconn,"SELECT nota FROM califica WHERE idp=$this->id");
            $numofnotes = pg_num_rows($query);
            $row = pg_fetch_all_columns($query);
            $sum = 0;
@@ -81,11 +81,15 @@
         }
         
         function mostrarDetalle(){
-           
+                
+            
             echo "<h1>" . $this->titulo . "</h1>";
             echo "<a href=" . $this->sitio . ">Enlace IMDB</a><br>";
-            echo "<h5>" .  $this->descr . "<h5><br>";
-            echo "<h6>Promedio de Calificacion: " . $this->promedio . "</h6>";
+            $gen = new genero();
+            $gen->retGenres($this->id);
+            echo "" .  $this->descr . "<br><br>";
+            echo "Promedio de Calificacion: " . $this->promedio ."";
+            echo "<h6>Elenco: </h6></br>";
              
         }
     }
