@@ -18,11 +18,11 @@ class Calificacion{
 		if(pg_num_rows($query)>0){
 			$res=pg_fetch_row($query);
 			$this->calificacion=$res[0];
-			echo "esto ".$this->calificacion;
+			
 			return $this->calificacion;
 		}else{
 			$this->calificacion=-1;
-			echo "lo otro ".$this->calificacion;
+			
 			return $this->calificacion;
 		}
 	}

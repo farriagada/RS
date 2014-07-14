@@ -86,11 +86,21 @@
             echo "<h1>" . $this->titulo . "</h1>";
             echo "<a href=" . $this->sitio . ">Enlace IMDB</a><br>";
             $gen = new genero();
-            $gen->retGenres($this->id);
+            $g = $gen->retGenres($this->id);
+              echo "G&eacute;neros:";
+              while ($row = pg_fetch_assoc($g)){
+               echo "<a href='listamov.php?genero=".$row['nombre']."'>". $row['nombre'] . "</a> "; 
+               }
+               echo "<br>";
             echo "" .  $this->descr . "<br><br>";
-            echo "Promedio de Calificacion: " . $this->promedio ."";
-            echo "<h6>Elenco: </h6></br>";
-             
+            echo "Promedio de Calificacion: " . $this->promedio ."<br><br>";
+            echo "<h6>Elenco </h6>";
+            $act = new actor();
+            $a = $act->retActores($this->id);
+               while ($row2 = pg_fetch_assoc($a)){
+                     echo "<a href='listact.php?actor=".$row2['nombre']."'>". $row2['nombre'] . "</a><br> "; 
+                }
+               echo "<br>";      
         }
     }
 

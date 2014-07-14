@@ -4,10 +4,10 @@
 session_start();
 ?>
 <head>
-  <title>RecoMovies - Home</title>
+  <title>RecoMovies - Catalogo</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
 </head>
 
@@ -35,14 +35,14 @@ session_start();
       <div id="menubar">
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li class="selected"><a href="home.php">Home</a></li>
-          <li><a href="listamovies.php">Cat&aacute;logo</a></li>
+          <li><a href="home.php">Home</a></li>
+          <li class="selected"><a href="listamovies.php">Cat&aacute;logo</a></li>
           <li><a href="page.html">A Page</a></li>
         </ul>
       </div>
     </div>
     <div id="content_header"></div>
-    <div id="site_content">
+    <div id="site_content"> 
       <div class="sidebar">
         <h3>Search</h3>
         <form method="post" action="search.php" id="search_form">
@@ -53,7 +53,7 @@ session_start();
         </form>
         <!-- insert your sidebar items here -->
         <h3>WishList</h3>
-        <?php
+          <?php
         $usuario = $_SESSION['Id'];
             $result = pg_query($dbconn, "SELECT p.titulo, p.promedio FROM pelicula as p, incluye as i, usuario as u WHERE
                                         $usuario=u.id AND
@@ -69,53 +69,24 @@ session_start();
           
         ?>
         
-    
-        
       </div>
       <div id="content">
-<?php
-	
-	include("DBconnection/connection.php");
-	include("todos.php");
-   	echo '
-
-	<head>
-	<title>Calculando promedio...</title>
-	<head>
-	</head>
-	</head>
-	<body>';
-
-	
-	$c = new catalogo();
-	$usuario = new usuario();
-	$calificacion = new calificacion();
-	$calificacion->setCalificacion($_POST["nota"]); 
-	$p = $c->buscarPelicula($_POST["titulo"]);	
-	$u=$usuario->encontrarUsuario($_POST["usuario"]);
-	//echo "antes".$u->getId();
-	//echo "antes".$p->getId();
-	$calif=$calificacion->buscarCalificacion($u,$p);
-
-	if($calificacion->getCalificacion()>=0){
-	
-		$calificacion->actualizar($u,$p,$_POST["nota"]);
-	}else{
-	
-		$calificacion->crear($u,$p,$_POST["nota"]);
-	}
-        $p->calcPromedio();
+           <?php
+        $genero = $_GET['genero'];
+        echo "<h1>Peliculas del genero: " .$genero."</h1>";
+        $result = pg_query($dbconn,"SELECT p.titulo FROM pelicula as p, tiene3 as t 
+                                    WHERE   t.nombre = '$genero' AND
+                                            t.id = p.id
+                                          
+                                    ORDER BY titulo ASC");
+        $col = pg_fetch_all_columns($result);
+   
+        for ($i=0; $i<pg_num_rows($result);$i++){
+            echo "<a href='http://localhost/RS/detallepelicula.php?titulo=" . $col[$i] . "'>" . $col[$i] . "</a><br>";
+        } 
         
-        $u->eliminarWL($p);
-	
-	echo '
-            <script type="text/javascript">  alert("Calificacion Guardada");</script>
-	<script type="text/javascript">window.location.href="detallepelicula.php?titulo='.$_POST["titulo"].'"</script>
-          
-	</body>
-	';
-?>
-</div>
+      ?> 
+      </div>
     </div>
     <div id="content_footer"></div>
     <div id="footer">
@@ -124,4 +95,3 @@ session_start();
   </div>
 </body>
 </html>
-
