@@ -130,14 +130,26 @@ session_start();
 		<label>Russian</label><input type="checkbox" name="Idioma[]" value="Russian" id="37"><br><br><br>
             
             
+        <script type="text/javascript">
+			<!--
+			var i=0;
+			function agregar(src)
+			{
+			i++	
+			src.innerHTML+='<tr>&nbsp;<input name="i" type="text"   id="qcant'+i+'" value="" size="5" />&nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" name="item" value="'+i+'">';
+			
+			
+			}
+			var it = i;
+							
+	     </script>
+         <div align="500px"  id="generado"></div>
+         <p><a href="#" onClick="agregar(document.getElementById('generado'));return false;">Agregar Actor</a></p><br><br>     
             
-            
-            
-            
-            
-            
-            
-            
+        <!-- <script type="text/javascript">
+		src.innerHTML+='<tr>&nbsp;<input name="nroact" type="text" readonly="readonly" id="nroact" value="'+i+'" size="5" />&nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" name="item" value="'+i+'">';
+		</script>   -->
+                        
             <label for='Agregar'> </label>       	
             <input type='submit' name='Agregar' value='Agregar'><br><br>  
      	        

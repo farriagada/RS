@@ -67,8 +67,15 @@ session_start();
 	$promedio = 0;
 	$genero = $_POST['Genero'];
 	$idioma = $_POST['Idioma'];
-	
-      	
+	$nico = $_POST['i'];
+	//echo $nico;
+	$q="qcant";
+	$conc0="$";
+	$conc1="_";
+	$conc2="POST['";
+	$conc3="'];";
+		
+		    	
   		$result = pg_query($dbconn, "SELECT id as num FROM pelicula order by id desc limit 1");
         $numofidmax = pg_fetch_assoc($result);
 		$id = $numofidmax['num'] + 1;
@@ -86,6 +93,20 @@ session_start();
             $query3 = pg_query($dbconn, "INSERT INTO tiene2 (id, nombre) VALUES ('$id','$idioma[$j]') ");
         }
 		
+
+
+
+
+		  for ($a=1 ;$a<=$_POST['item'];$a++){ 
+          $pqcant = $nico; 
+          echo $pqcant;
+		  echo "<br>";
+		/*  $o = count($pqcant);
+          for ($k = 0; $k <$o; $k++){
+          $query4 = pg_query($dbconn, "INSERT INTO actua_en (idp, ida) VALUES ('$id','$pqcant[$k]') ");
+          }
+		  $b = $a + 1; 
+          */}
 		
   		if($query && $query2 && $query3){
 				
