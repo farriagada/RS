@@ -73,7 +73,30 @@ session_start();
         
       </div>
       <div id="content">
-        
+        <h1> Bienvenido, estas son las ultimas 10 peliculas del catalogo </h1>
+        <?php
+            $lasts = pg_query($dbconn, "SELECT id, titulo FROM pelicula ORDER BY id DESC");
+            $count = 0;
+            while ($row = pg_fetch_assoc($lasts)){
+
+                  $lum = pg_query($dbconn, "SELECT nota FROM se_recomienda_a WHERE idu=".$_SESSION['Id']."AND idp=".$row['id']."");
+                  if (pg_num_rows($lum)>0){
+                    $mark = pg_fetch_assoc($lum);
+                    echo "<a href='detallepelicula.php?titulo=".$row['titulo']."'><h4>".$row['titulo']." - ".$mark['nota']."</h4></a>";
+                    $count++; 
+                  }
+                  if ($count == 10) {
+                    $count = 0;
+                    break;
+                  }
+
+            }
+
+           // $query = pg_query($dbconn, "SELECT p.titulo, r.nota FROM se_recomienda_a as r, pelicula as p, usuario as u
+                                       // WHERE p.id > $num2 AND p.id = r.idp AND r.idu = u.id");
+
+
+       ?>
       </div>
     </div>
     <div id="content_footer"></div>
