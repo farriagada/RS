@@ -67,14 +67,7 @@ session_start();
 	$promedio = 0;
 	$genero = $_POST['Genero'];
 	$idioma = $_POST['Idioma'];
-	$nico = $_POST['i'];
-	//echo $nico;
-	$q="qcant";
-	$conc0="$";
-	$conc1="_";
-	$conc2="POST['";
-	$conc3="'];";
-		
+	//echo $nico;		
 		    	
   		$result = pg_query($dbconn, "SELECT id as num FROM pelicula order by id desc limit 1");
         $numofidmax = pg_fetch_assoc($result);
@@ -92,26 +85,35 @@ session_start();
         for ($j = 0; $j <$m; $j++){
             $query3 = pg_query($dbconn, "INSERT INTO tiene2 (id, nombre) VALUES ('$id','$idioma[$j]') ");
         }
+        
+        //agregar actores randomicamente
+        
+        $min=0;
+		$max=22040;
+		$quantity=rand(7,20);
 		
-
-
-
-
-		  for ($a=1 ;$a<=$_POST['item'];$a++){ 
-          $pqcant = $nico; 
-          echo $pqcant;
-		  echo "<br>";
-		/*  $o = count($pqcant);
-          for ($k = 0; $k <$o; $k++){
-          $query4 = pg_query($dbconn, "INSERT INTO actua_en (idp, ida) VALUES ('$id','$pqcant[$k]') ");
-          }
-		  $b = $a + 1; 
-          */}
+		function UniqueRandomNumbersWithinRange($min, $max, $quantity) {
+    	$numbers = range($min, $max);
+    	shuffle($numbers);
+    	return array_slice($numbers, 0, $quantity);
+		}		
+		$arr=UniqueRandomNumbersWithinRange($min,$max,$quantity);
+		$nroact = count($arr);
 		
+		
+		for ($k = 0; $k <$nroact; $k++){
+            $query4 = pg_query($dbconn, "INSERT INTO actua_en (idp, ida) VALUES ('$id','$arr[$k]') ");
+        }
+		
+		
+		
+		
+		
+				
   		if($query && $query2 && $query3){
 				
     		echo "<script>
-    			 alert('Agregado Correctamente');
+    			 alert('Agregada Correctamente');
        			 window.location.href='homeadmin.php';
     			</script>";	
 				
