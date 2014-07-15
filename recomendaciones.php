@@ -13,7 +13,7 @@ session_start();
 
 <body>
     <?php
-        include("DBconnection/connection.php");
+    include("DBconnection/connection.php");
     ?>
   <div id="main">
     <div id="header">
@@ -45,7 +45,7 @@ session_start();
     <div id="site_content"> 
       <div class="sidebar">
         <h3>Search</h3>
-        <form method="post" action="#" id="search_form">
+        <form method="post" action="search.php" id="search_form">
           <p>
             <input class="search" type="text" name="search_field" value="" />
             <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
@@ -53,7 +53,7 @@ session_start();
         </form>
         <!-- insert your sidebar items here -->
         <h3>WishList</h3>
-      <?php
+          <?php
         $usuario = $_SESSION['Id'];
             $result = pg_query($dbconn, "SELECT p.titulo, p.promedio FROM pelicula as p, incluye as i, usuario as u WHERE
                                         $usuario=u.id AND
@@ -68,18 +68,49 @@ session_start();
             }
           
         ?>
-    
         
       </div>
       <div id="content">
-       <?php
-        include("todos.php");
-        $bus = $_POST["search_field"];
-        $lista = array();
-        $cat = new catalogo();
-        
-        $lista = $cat->buscarPeliculas($bus);
-        $cat->mostrarLista($lista);
+           <?php
+        $id = $_SESSION['Id'];
+        $count = 0;
+        $result = pg_query($dbconn,"SELECT DISTINCT on (p.titulo, p.id) p.titulo, p.id, r.nota FROM pelicula as p,
+                                    se_recomienda_a as r, usuario as u
+                                    WHERE u.id = $id AND
+                                    u.id = r.idu AND
+                                    p.id = r.idp 
+                                    ORDER BY p.titulo,p.id,r.nota DESC");
+
+
+         while ($row = pg_fetch_assoc($result)){
+
+                   $query = pg_query($dbconn, "SELECT DISTINCT t.nombre FROM no_gusta as t, usuario as u 
+                                               WHERE  u.id = t.idu AND
+                                               u.id = $id ");
+                    
+                    $dislike = array();
+                    while ($gen = pg_fetch_assoc($query)){
+                          array_push($dislike, $gen['nombre']);  
+                    }
+
+                    $pid = $row['id'];
+                    $query2 = pg_query($dbconn, "SELECT DISTINCT t.nombre FROM tiene3 as t, pelicula as p 
+                                               WHERE  p.id = t.id AND
+                                                      p.id = $pid ");
+                    $genres = array();
+                    while ($gen2 = pg_fetch_assoc($query2)){
+                          array_push($genres, $gen2['nombre']);
+                    }
+                  
+                    $res = array_intersect($dislike, $genres);
+                    if(empty($res)){
+                          echo "<a href='detallepelicula.php?titulo=".$row['titulo']."'><h4>".$row['titulo']."</h4></a>";
+                    }
+                           
+              
+          }
+
+          
         
       ?> 
       </div>

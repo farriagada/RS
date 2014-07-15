@@ -37,7 +37,7 @@ session_start();
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
           <li><a href="home.php">Home</a></li>
           <li class="selected"><a href="listamovies.php">Cat&aacute;logo</a></li>
-          <li><a href="page.html">A Page</a></li>
+          <li><a href="recomendaciones.php">Recomendaciones</a></li>
         </ul>
       </div>
     </div>
@@ -55,7 +55,7 @@ session_start();
         <h3>WishList</h3>
           <?php
         $usuario = $_SESSION['Id'];
-            $result = pg_query($dbconn, "SELECT p.titulo, p.promedio FROM pelicula as p, incluye as i, usuario as u WHERE
+            $result = pg_query($dbconn, "SELECT DISTINCT p.titulo, p.promedio FROM pelicula as p, incluye as i, usuario as u WHERE
                                         $usuario=u.id AND
                                         u.id=i.id AND
                                         i.idpeli = p.id");
@@ -74,7 +74,7 @@ session_start();
            <?php
         $idioma = $_GET['lang'];
         echo "<h1>Peliculas del idioma: " .$idioma."</h1>";
-        $result = pg_query($dbconn,"SELECT p.titulo FROM pelicula as p, tiene2 as t 
+        $result = pg_query($dbconn,"SELECT DISTINCT p.titulo FROM pelicula as p, tiene2 as t 
                                     WHERE   t.nombre = '$idioma' AND
                                             t.id = p.id
                                           

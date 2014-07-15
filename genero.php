@@ -12,7 +12,7 @@ class Genero{
     
     function retGenres($idpeli){
         $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
-        $query = pg_query($dbconn, "SELECT nombre FROM tiene3 WHERE id=$idpeli");
+        $query = pg_query($dbconn, "SELECT Distinct nombre FROM tiene3 WHERE id=$idpeli");
         return $query;
     }
 }

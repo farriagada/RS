@@ -12,7 +12,7 @@ class Idioma{
     
     function retIdiomas($idpeli){
         $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
-        $query = pg_query($dbconn, "SELECT nombre FROM tiene2 WHERE id=$idpeli");
+        $query = pg_query($dbconn, "SELECT distinct nombre FROM tiene2 WHERE id=$idpeli");
         return $query;
     }
 }

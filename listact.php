@@ -37,7 +37,7 @@ session_start();
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
           <li><a href="home.php">Home</a></li>
           <li class="selected"><a href="listamovies.php">Cat&aacute;logo</a></li>
-          <li><a href="page.html">A Page</a></li>
+          <li><a href="recomendaciones.php">Recomendaciones</a></li>
         </ul>
       </div>
     </div>
@@ -75,7 +75,7 @@ session_start();
         $actor = $_GET['actor'];
         echo "<h1>Peliculas de " .$actor."</h1>";
       
-        $result = pg_query($dbconn,"SELECT p.titulo FROM pelicula as p, actua_en as t 
+        $result = pg_query($dbconn,"SELECT DISTINCT p.titulo FROM pelicula as p, actua_en as t 
                                     WHERE   t.nombre = '$actor' AND
                                             t.id = p.id
                                           
