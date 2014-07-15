@@ -43,6 +43,8 @@
                 <div id="content">
                     <?php
                     include("todos.php");
+                    ini_set('memory_limit','-1');
+                    ini_set('max_execution_time', 300);
                     $c = new catalogo();
                     $vectorA = array();
                     $vectorB = array();
@@ -61,12 +63,12 @@
                         $parteIzq = 0;
                         $parteDer = 0;
                         //Para cada usuario u que evaluó A
-                        $query2 = "SELECT * FROM califica WHERE idp='$peliculaA[0]' ";
+                        $query2 = "SELECT * FROM califica WHERE idp=$peliculaA[0] ";
                         $usuariosEvaluaA = pg_query($dbconn, $query2);
                         while ($usuario = pg_fetch_row($usuariosEvaluaA)) {
                             $vectorA = cargarVector($usuario[0], $peliculaA[0], $vectorA);
                             //Para cada pelicula B evaluada por u
-                            $query3 = "SELECT idp,promedio FROM califica,pelicula WHERE idu='$usuario[0]]' and id=idp";
+                            $query3 = "SELECT idp,promedio FROM califica,pelicula WHERE idu=$usuario[0] and id=idp";
                             $peliculasB = pg_query($dbconn, $query3);
                             while ($peliculaB = pg_fetch_row($peliculasB)) {
                                 for ($i = 0; $i < pg_num_rows($peliculasA); $i++) {
@@ -88,7 +90,7 @@
 
                     function cargarVector($usuario, $pelicula, $vector) {
                         $dbconn = pg_connect("host=localhost port=5432 dbname=Isw2 user=postgres password=lokoko20");
-                        $notas = pg_query($dbconn, "select idp,nota from califica where idu='$usuario' and idp='$pelicula'");
+                        $notas = pg_query($dbconn, "select idp,nota from califica where idu=$usuario and idp=$pelicula");
                         while ($nota = pg_fetch_row($notas)) {
                             $vector[$nota[0]] = $nota[1];
                         }
